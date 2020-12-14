@@ -197,11 +197,11 @@ export default {
       this.$store.commit('toStore', this.tableData)
     },
     GetCsvFile: function(url,col,from,to,setter) {
+      window.setTimeout(2000);
       axios
         .get(url,{responseType: 'arraybuffer'})
         .then(response => {
             const buffer = Buffer.from(response.data)
-            window.setTimeout(2000);
             let csv = Encoding.convert(buffer, {
               from: from,
               to: to,
