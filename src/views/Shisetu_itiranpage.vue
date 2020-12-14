@@ -78,7 +78,7 @@ export default {
   mounted: function() {
     switch(this.location_no){
       case '4':
-        this.GetCsvFile("./data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
+        this.GetCsvFile("/data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
         break;
       case '5':
         this.GetCsvFile("/data/Nursery_location.csv",true,'SJIS','UNICODE',this.setNursery);
