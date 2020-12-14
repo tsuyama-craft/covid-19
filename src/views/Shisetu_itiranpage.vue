@@ -87,7 +87,7 @@ export default {
         this.GetCsvFile("/data/JuniorHighSchool_location.csv",true,'SJIS','UNICODE',this.setJuniorHigh);
         break;
       case '6':
-        this.GetCsvFile("/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
         break;
       case '7':
         this.GetCsvFile("/data/Welfare_location.csv",true,'SJIS','UNICODE',this.setWelfare);
