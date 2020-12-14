@@ -78,7 +78,7 @@ export default {
   mounted: function() {
     switch(this.location_no){
       case '4':
-        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
+        this.GetCsvFile("/data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
         break;
       case '5':
         this.GetCsvFile("/data/Nursery_location.csv",true,'SJIS','UNICODE',this.setNursery);
@@ -87,7 +87,7 @@ export default {
         this.GetCsvFile("/data/JuniorHighSchool_location.csv",true,'SJIS','UNICODE',this.setJuniorHigh);
         break;
       case '6':
-        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
+        this.GetCsvFile("/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
         break;
       case '7':
         this.GetCsvFile("/data/Welfare_location.csv",true,'SJIS','UNICODE',this.setWelfare);
