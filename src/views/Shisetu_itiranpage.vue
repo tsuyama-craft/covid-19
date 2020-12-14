@@ -201,6 +201,7 @@ export default {
         .get(url,{responseType: 'arraybuffer'})
         .then(response => {
             const buffer = Buffer.from(response.data)
+            window.setTimeout(2000);
             let csv = Encoding.convert(buffer, {
               from: from,
               to: to,
