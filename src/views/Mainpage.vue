@@ -50,7 +50,7 @@ export default {
       // this.kenDead.length > 0 &&
       // this.kenIryou.length > 0 &&
       // this.Zenkoku.length > 0 
-      return this.Zenkoku.length
+      return this.Zenkoku.length>0
     },
     zenkokuId: function() {
       return 'zenkoku'
