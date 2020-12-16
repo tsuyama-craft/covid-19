@@ -164,12 +164,22 @@ export default {
       default:
         break;
     }
+    this.lastupdata();
   },
   methods: {
+    lastupdata: function() {
+      const req = new XMLHttpRequest();
+      req.open('GET', 'http://localhost:3000/');
+      req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+          console.log(req.responseText);
+        }
+      };
+      req.send(null);
+    },
     setIryou: function(Iryou) {
       this.Iryou = Iryou
       this.tableData = this.Iryou
-
       this.tableData = this.tableData.filter(function(each){
         if ((each['Unnamed: 10'] != '') && (each['Unnamed: 15'].indexOf('津山')!=-1)) return true
       });
