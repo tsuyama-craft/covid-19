@@ -44,12 +44,13 @@ export default {
   },
   computed: {
     readyToshowMainPage: function() {
-      return this.kenDetails.length > 0 &&
-      this.kenUtiwake.length > 0 &&
-      this.kenPcr.length > 0 &&
-      this.kenDead.length > 0 &&
-      this.kenIryou.length > 0 &&
-      this.Zenkoku.length > 0 
+      // return this.kenDetails.length > 0 &&
+      // this.kenUtiwake.length > 0 &&
+      // this.kenPcr.length > 0 &&
+      // this.kenDead.length > 0 &&
+      // this.kenIryou.length > 0 &&
+      // this.Zenkoku.length > 0 
+      return this.Zenkoku.length
     },
     zenkokuId: function() {
       return 'zenkoku'
