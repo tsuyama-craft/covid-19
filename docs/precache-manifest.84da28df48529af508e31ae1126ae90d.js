@@ -100,7 +100,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/yajirushi.127965e6.png"
   },
   {
-    "revision": "7aa5e80c51cee06ae4bb58d6c365ebd2",
+    "revision": "6b15a43f91ead177f31119685a0caf39",
     "url": "index.html"
   },
   {
