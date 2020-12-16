@@ -17,10 +17,12 @@
                 <td>{{ placeTEL }}</td>
             </tr>
             <tr>
-                <th v-if="location_no!=12">URL</th>
                 <th v-if="location_no==12">設置場所</th>
+                <th v-if="location_no==1 || location_no==2 || location_no==3">診療科目</th>
+                <th v-else>URL</th>
                 <td>
                     <a v-if="location_no==12">{{ placeURL }}</a>
+                    <a v-if="location_no==1 || location_no==2 || location_no==3">もうしばらくお待ちください</a>
                     <a v-else :href="toPlace">{{ placeURL }}</a>
                 </td>
             </tr>
@@ -30,13 +32,14 @@
             </tr>
             <tr>
                 <th>地図</th>
-                <td><iframe 
+                <td v-if="location_no!=1 && location_no!=2 && location_no!=3"><iframe 
                     :src="gMaps"
                     height="450"
                     frameborder="0"
                     style="border: 0"
                     allowfullscreen></iframe>
                 </td>
+                <td v-else>もうしばらくお待ちください</td>
             </tr>
         </tbody>
     </table>
@@ -44,6 +47,7 @@
 
 <script>
 import mainmenu from "../components/mainmenu.vue";
+
 export default {
   name: "Shisetu_syousaipage",
   props: {
@@ -86,7 +90,10 @@ export default {
           }
       },
       placeName: function(){
-          if(this.location_no=='12'){
+          if(this.location_no=='1' || this.location_no=='2' || this.location_no=='3'){
+              return this.item[this.count]['Unnamed: 10']
+          }
+          else if(this.location_no=='12'){
               return this.item[this.count]['施設名']
           }
           else{
@@ -94,7 +101,10 @@ export default {
           }
       },
       placeTEL: function(){
-          if(this.location_no=='12'){
+          if(this.location_no=='1' || this.location_no=='2' || this.location_no=='3'){
+              return this.item[this.count]['Unnamed: 18']
+          }
+          else if(this.location_no=='12'){
               return this.item[this.count]['電話']
           }
           else{
@@ -110,7 +120,12 @@ export default {
           }
       },
       place: function(){
-          return this.item[this.count]['住所']
+          if(this.location_no=='1' || this.location_no=='2' || this.location_no=='3'){
+              return this.item[this.count]['Unnamed: 15']
+          }
+          else{
+            return this.item[this.count]['住所']
+          }
       },
   },
   methods: {
@@ -150,6 +165,7 @@ h1{
     font-size: 14px;
   }
 }
+
 .syousai{
     width:100%;
     border: 2px solid #d6ceb4;

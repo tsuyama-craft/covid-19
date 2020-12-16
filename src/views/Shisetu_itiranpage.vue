@@ -2,7 +2,7 @@
   <mainmenu judge=1 />
   <div class="pagelink">
     <router-link to="/shisetupage">施設情報</router-link>
-    <a>＞</a><a>津山市体育施設一覧</a>
+    <a>＞</a><a>津山市施設一覧</a>
   </div>
   <h1 v-if="location_no==1">津山市医科一覧</h1>
   <h1 v-if="location_no==2">津山市歯科一覧</h1>
@@ -16,7 +16,11 @@
   <h1 v-if="location_no==10">津山市集会施設一覧</h1>
   <h1 v-if="location_no==11">津山市児童クラブ一覧</h1>
   <h1 v-if="location_no==12">津山市AED設置場所一覧</h1>
-  <table class="table2" v-if="tableData.length>0">
+  <br>
+  <div class="filter2">
+    <span style="white-space: nowrap;" class="filterkeyword2">絞り込み<input type="text" v-model="keyword2"></span>
+  </div>
+  <table class="table2" v-if="tableData.length>0" rules="rows">
     <thead>
       <tr>
         <th>施設名</th>
@@ -26,15 +30,21 @@
     </thead>
 
     <tbody>
-      <tr v-for="row in tableData" :key="row">
+      <tr v-for="row in reverseItems" :key="row">
+        <td v-if="location_no=='1' || location_no=='2' || location_no=='3'"><router-link :to="{name: 'Shisetu_syousaipage', params: {no: row['Unnamed: 10'], location_no:location_no}}">{{row['Unnamed: 10']}}</router-link></td>
         <td v-if="location_no=='12'"><router-link :to="{name: 'Shisetu_syousaipage', params: {no: row.施設名, location_no:location_no}}">{{row.施設名}}</router-link></td>
-        <td v-else><router-link :to="{name: 'Shisetu_syousaipage', params: {no: row.名称, location_no:location_no}}">{{row.名称}}</router-link></td>
-        <td>{{row.住所}}</td>
+        <td v-if="location_no!='12' && location_no!='1' && location_no!='2' && location_no!='3'"><router-link :to="{name: 'Shisetu_syousaipage', params: {no: row.名称, location_no:location_no}}">{{row.名称}}</router-link></td>
+
+        <td v-if="location_no=='1' || location_no=='2' || location_no=='3'">{{row['Unnamed: 15']}}</td>
+        <td v-else>{{row.住所}}</td>
+
+        <td v-if="windowWidth>480 && (location_no=='1' || location_no=='2' || location_no=='3')">{{row['Unnamed: 18']}}</td>
         <td v-if="windowWidth>480 && location_no=='12'">{{row.電話}}</td>
-        <td v-if="windowWidth>480 && location_no!='12'">{{row.TEL}}</td>
+        <td v-if="windowWidth>480 && location_no!='12' && location_no!='1' && location_no!='2' && location_no!='3'">{{row.TEL}}</td>
       </tr>
     </tbody>
   </table>
+
 </template>
 
 <script>
@@ -56,6 +66,7 @@ export default {
   data: function() {
     return {
       windowWidth: window.innerWidth,
+      keyword2: '',
       Sport: [],
       Nursery: [],
       Kind: [],
@@ -69,50 +80,139 @@ export default {
       Rally: [],
       Child: [],
       AED: [],
+      Iryou: [],
+      Shika: [],
+      Yakkyoku: [],
       joinData: [],
       joinData2: [],
       tableData: [],
-      Name: ""
+      Name: "",
     }
+  },
+  computed: {
+    reverseItems() {
+      const filteredTable = [];
+      for (let i in this.tableData){
+        const filteredTables = this.tableData[i];
+        if(this.location_no=='12'){
+          if(filteredTables["施設名"].indexOf(this.keyword2) !== -1 ||
+              filteredTables["住所"].indexOf(this.keyword2) !== -1 ||
+              filteredTables["電話"].indexOf(this.keyword2) !== -1 ){
+            filteredTable.push(filteredTables)
+          }
+        }
+        else if(this.location_no=='1' || this.location_no=='2' || this.location_no=='3'){
+          if(filteredTables["Unnamed: 10"].indexOf(this.keyword2) !== -1 ||
+              filteredTables["Unnamed: 15"].indexOf(this.keyword2) !== -1 ||
+              filteredTables["Unnamed: 18"].indexOf(this.keyword2) !== -1 ){
+            filteredTable.push(filteredTables)
+          }
+        }
+        else{
+          if(filteredTables["名称"].indexOf(this.keyword2) !== -1 ||
+              filteredTables["住所"].indexOf(this.keyword2) !== -1 ||
+              filteredTables["TEL"].indexOf(this.keyword2) !== -1 ){
+            filteredTable.push(filteredTables)
+          }
+        }
+      }
+      return filteredTable;
+    },
   },
   mounted: function() {
     switch(this.location_no){
+      case '1':
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Okayama_iryou.csv",true,'UTF8','UNICODE',this.setIryou);
+        break;
+      case '2':
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Okayama_shika.csv",true,'UTF8','UNICODE',this.setShika);
+        break;
+      case '3':
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Okayama_yakkyoku.csv",true,'UTF8','UNICODE',this.setYakkyoku);
+        break;
       case '4':
-        this.GetCsvFile("/data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
         break;
       case '5':
-        this.GetCsvFile("/data/Nursery_location.csv",true,'SJIS','UNICODE',this.setNursery);
-        this.GetCsvFile("/data/Kindergarten_location.csv",true,'SJIS','UNICODE',this.setKind);
-        this.GetCsvFile("/data/JuniorSchool_location.csv",true,'SJIS','UNICODE',this.setJunior);
-        this.GetCsvFile("/data/JuniorHighSchool_location.csv",true,'SJIS','UNICODE',this.setJuniorHigh);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Nursery_location.csv",true,'SJIS','UNICODE',this.setNursery);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Kindergarten_location.csv",true,'SJIS','UNICODE',this.setKind);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/JuniorSchool_location.csv",true,'SJIS','UNICODE',this.setJunior);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/JuniorHighSchool_location.csv",true,'SJIS','UNICODE',this.setJuniorHigh);
         break;
       case '6':
-        this.GetCsvFile("/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
         break;
       case '7':
-        this.GetCsvFile("/data/Welfare_location.csv",true,'SJIS','UNICODE',this.setWelfare);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Welfare_location.csv",true,'SJIS','UNICODE',this.setWelfare);
         break;
       case '8':
-        this.GetCsvFile("/data/Park_location.csv",true,'SJIS','UNICODE',this.setPark);
-        this.GetCsvFile("/data/Library_location.csv",true,'SJIS','UNICODE',this.setLibrary);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Park_location.csv",true,'SJIS','UNICODE',this.setPark);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Library_location.csv",true,'SJIS','UNICODE',this.setLibrary);
         break;
       case '9':
-        this.GetCsvFile("/data/Government_location.csv",true,'SJIS','UNICODE',this.setGovernment);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Government_location.csv",true,'SJIS','UNICODE',this.setGovernment);
         break;
       case '10':
-        this.GetCsvFile("/data/Rally_location.csv",true,'SJIS','UNICODE',this.setRally);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Rally_location.csv",true,'SJIS','UNICODE',this.setRally);
         break;
       case '11':
-        this.GetCsvFile("/data/Children_location.csv",true,'SJIS','UNICODE',this.setChild);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/Children_location.csv",true,'SJIS','UNICODE',this.setChild);
         break;
       case '12':
-        this.GetCsvFile("/data/AED_location.csv",true,'SJIS','UNICODE',this.setAED);
+        this.GetCsvFile("https://taurayouhei.github.io/covid-19/data/AED_location.csv",true,'SJIS','UNICODE',this.setAED);
         break;
       default:
         break;
     }
   },
   methods: {
+    setIryou: function(Iryou) {
+      this.Iryou = Iryou
+      this.tableData = this.Iryou
+
+      this.tableData = this.tableData.filter(function(each){
+        if ((each['Unnamed: 10'] != '') && (each['Unnamed: 15'].indexOf('津山')!=-1)) return true
+      });
+      
+      for(let i=0; i<this.tableData.length; i++){
+        const smp = this.tableData[i]['Unnamed: 15'].split('\n');
+        const tmp = this.tableData[i]['Unnamed: 18'].split('\n');
+        this.tableData[i]['Unnamed: 15'] = smp[1]
+        this.tableData[i]['Unnamed: 18'] = tmp[0]
+      }
+
+      this.$store.commit('toStore', this.tableData)
+    },
+    setShika: function(Shika) {
+      this.Shika = Shika
+      this.tableData = this.Shika
+      this.tableData = this.tableData.filter(function(each){
+        if ((each['Unnamed: 10'] != '') && (each['Unnamed: 15'].indexOf('津山')!=-1)) return true
+      });
+      
+      for(let i=0; i<this.tableData.length; i++){
+        const smp = this.tableData[i]['Unnamed: 15'].split('\n');
+        const tmp = this.tableData[i]['Unnamed: 18'].split('\n');
+        this.tableData[i]['Unnamed: 15'] = smp[1]
+        this.tableData[i]['Unnamed: 18'] = tmp[0]
+      }
+      this.$store.commit('toStore', this.tableData)
+    },
+    setYakkyoku: function(Yakkyoku) {
+      this.Yakkyoku = Yakkyoku
+      this.tableData = this.Yakkyoku
+      this.tableData = this.tableData.filter(function(each){
+        if ((each['Unnamed: 10'] != '') && (each['Unnamed: 15'].indexOf('津山')!=-1)) return true
+      });
+      
+      for(let i=0; i<this.tableData.length; i++){
+        const smp = this.tableData[i]['Unnamed: 15'].split('\n');
+        const tmp = this.tableData[i]['Unnamed: 18'].split('\n');
+        this.tableData[i]['Unnamed: 15'] = smp[1]
+        this.tableData[i]['Unnamed: 18'] = tmp[0]
+      }
+      this.$store.commit('toStore', this.tableData)
+    },
     setSports: function(Sport) {
       this.Sport = Sport
       this.tableData = this.Sport
@@ -197,7 +297,6 @@ export default {
       this.$store.commit('toStore', this.tableData)
     },
     GetCsvFile: function(url,col,from,to,setter) {
-      window.setTimeout(2000);
       axios
         .get(url,{responseType: 'arraybuffer'})
         .then(response => {
@@ -240,13 +339,21 @@ h1{
   margin: 10px 0;
   font-size: 10px;
 }
+.filterkeyword2{
+  margin: 0 auto;
+}
 .table2 {
   width: 100%;
   margin: 0 auto;
   border-collapse: collapse;
   border: 2px solid rgb(29, 23, 23);
 }
-
+.table2 thead{
+  background-color: #eeece4;
+}
+.table2 td {
+  width: 33%;
+}
 @media screen and (min-width: 480px){
   .table2 {
     width: 80%;

@@ -49,7 +49,7 @@ h1{
 .simple_square_btn2 {
   display: block;
 	position: relative;
-	width: 7rem;
+	width: 7.5rem;
   height: 4rem;
 	padding: 0.5em;
 	text-align: center;
