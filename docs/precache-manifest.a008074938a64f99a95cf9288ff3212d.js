@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1c1bcc3cbe4a0193f85d",
+    "revision": "243d0c45d11831cd07e5",
     "url": "css/app.b3768ad1.css"
   },
   {
-    "revision": "027ce9bec160981868ae",
-    "url": "css/chunk-177e3a94.5b758df8.css"
+    "revision": "7a8a60c5d8a89cf641fc",
+    "url": "css/chunk-0e0f083f.a9a1e82d.css"
   },
   {
     "revision": "1159b0fdb73e12a6895b",
@@ -30,6 +30,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "0cfb52d9deef0a7ee5f0",
     "url": "css/chunk-e844c228.8af1033f.css"
+  },
+  {
+    "revision": "2b4e9b5dbe76aab834ed6a0fc90b794c",
+    "url": "data/330001okayamacovid19medicalsystem.csv"
   },
   {
     "revision": "5d9982c36ddb5bbf6fe75d9538f041b3",
@@ -96,20 +100,36 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "data/Welfare_location.csv"
   },
   {
+    "revision": "79cb50252e27b832a573243afe329645",
+    "url": "data/kanjahasseijoukyou.csv"
+  },
+  {
+    "revision": "128fa6cc2f17de61fef4c8c5aed5a749",
+    "url": "data/kansenshashousaijouhou.csv"
+  },
+  {
+    "revision": "4b3f7d5fe310b19130d79b03f94d1a42",
+    "url": "data/kansenshasuu0420.csv"
+  },
+  {
+    "revision": "f8af0f46d90b055f5e6993046b71abce",
+    "url": "data/pcr.csv"
+  },
+  {
     "revision": "127965e6fc5200fd35e6cb99ba282d39",
     "url": "img/yajirushi.127965e6.png"
   },
   {
-    "revision": "60275241aea98f030571f4d5d4ded393",
+    "revision": "09d98bcf6d2037549c47984842d89c44",
     "url": "index.html"
   },
   {
-    "revision": "1c1bcc3cbe4a0193f85d",
-    "url": "js/app.e5761480.js"
+    "revision": "243d0c45d11831cd07e5",
+    "url": "js/app.640073fd.js"
   },
   {
-    "revision": "027ce9bec160981868ae",
-    "url": "js/chunk-177e3a94.a6bfccb6.js"
+    "revision": "7a8a60c5d8a89cf641fc",
+    "url": "js/chunk-0e0f083f.165dd765.js"
   },
   {
     "revision": "1159b0fdb73e12a6895b",
