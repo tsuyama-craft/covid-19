@@ -37,7 +37,7 @@ import mainmenu from "../components/mainmenu.vue";
 function DataSet(data, label, count) {
   const search = [];
   for (let i = 0; i < label.length; i++) {
-    search[i] = label[i].slice(0, 2);
+    search[i] = label[i].slice(0, 7);
   }
 
   const searchWord = search.filter(function (x, i, self) {
@@ -45,7 +45,7 @@ function DataSet(data, label, count) {
   });
 
   for (let i = 0; i < label.length; i++) {
-    if (label[i].slice(0, 2) != searchWord[searchWord.length - 1 - count]) {
+    if (label[i].slice(0, 7) != searchWord[searchWord.length - 1 - count]) {
       label.splice(i, 1);
       data.splice(i, 1);
       i = i - 1;
