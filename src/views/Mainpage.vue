@@ -76,8 +76,8 @@ export default {
       a = a.replace("月","/");
       a = a.replace("日","/");
       a = a.split("/")
-      if (a[1].length==1){
-        a[1] = "0" + a[1];
+      if (a[2].length==1){
+        a[2] = "0" + a[2];
       }
       const hiduke = "※" + a[0] + "年" + a[1] + "月" + a[2] + "日時点";
       let gata  = this.last.split("-");
