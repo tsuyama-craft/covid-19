@@ -120,7 +120,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/yajirushi.127965e6.png"
   },
   {
-    "revision": "2da155bd33f3dda95ff481030ad53b28",
+    "revision": "c5c7e147e5520a48d32ac57bd62e8213",
     "url": "index.html"
   },
   {
@@ -160,7 +160,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "js/chunk-vendors.b9d8092f.js"
   },
   {
-    "revision": "4dd2751dfa44c648270334e74aa5aa10",
+    "revision": "0f6227929b256fa29a0bfded42dd6edc",
     "url": "manifest.json"
   },
   {
