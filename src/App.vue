@@ -2,19 +2,6 @@
   <router-view/>
 </template>
 
-<script>
-export default {
-  name: "App",
-  mounted: function () {
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
-      for(let registration of registrations) {
-        registration.unregister();
-      }
-    });
-  },
-}
-</script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
