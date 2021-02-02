@@ -201,6 +201,7 @@ export default {
     },
     setKenDead: function(kenDead){
       this.kenDead = kenDead
+      console.log(this.kenDead)
     },
     setKenIryou: function(kenIryou){
       this.kenIryou = kenIryou
