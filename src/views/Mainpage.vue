@@ -55,13 +55,13 @@ export default {
       return 'zenkoku'
     },
     use: function() {
-      return Number(this.kenDead[this.kenDead.length-1]["患者_宿泊療養施設に入所中"]) + Number(this.kenDead[this.kenDead.length-1]["患者_入院中_入院予定含む"])
+      return Number(this.kenDead[this.kenDead.length-2]["入院中↵(入院予定を含む)"]) + Number(this.kenDead[this.kenDead.length-2]["宿泊療養施設に入所中"])
     },
     all: function() {
       return Number(this.kenIryou[this.kenIryou.length-1]["確保数_病床"]) + Number(this.kenIryou[this.kenIryou.length-1]["確保数_宿泊療養施設"])
     },
     update: function() {
-      const hiduke = this.kenDead[this.kenDead.length-1]["公表_年月日"].split("/");
+      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("/");
       if (hiduke[2].length==1){
         hiduke[2] = "0" + hiduke[2];
       }
@@ -120,7 +120,7 @@ export default {
     },
     dead: function(){
       const filteredZenkokuDead = this.Zenkoku.reduce((sum,each)=>sum + each["ndeaths"],0);
-      const hiduke = this.kenDead[this.kenDead.length-1]["公表_年月日"].split("/");
+      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("/");
       if (hiduke[2].length==1){
         hiduke[2] = "0" + hiduke[2];
       }
@@ -130,7 +130,7 @@ export default {
 
       return {
         zenkoku:filteredZenkokuDead + "人",
-        okayama: this.kenDead[this.kenDead.length-1]["患者_死亡"] + "人",
+        okayama: this.kenDead[this.kenDead.length-2]["死亡"] + "人",
         tsuyama: 'No data',
         data1: gata,
         data2: hidukedata,
@@ -139,7 +139,7 @@ export default {
     },
     discharge: function(){
       const filteredZenkokuDis = this.Zenkoku.reduce((sum,each)=>sum + each["nexits"],0);
-      const hiduke = this.kenDead[this.kenDead.length-1]["公表_年月日"].split("/");
+      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("/");
       if (hiduke[2].length==1){
         hiduke[2] = "0" + hiduke[2];
       }
@@ -149,7 +149,7 @@ export default {
 
       return {
         zenkoku:filteredZenkokuDis + "人",
-        okayama: this.kenDead[this.kenDead.length-1]["患者_退院等"] + "人",
+        okayama: this.kenDead[this.kenDead.length-2]["退院等"] + "人",
         tsuyama: 'No data',
         data1: gata,
         data2: hidukedata,
@@ -201,7 +201,6 @@ export default {
     },
     setKenDead: function(kenDead){
       this.kenDead = kenDead
-      console.log(this.kenDead)
     },
     setKenIryou: function(kenIryou){
       this.kenIryou = kenIryou
