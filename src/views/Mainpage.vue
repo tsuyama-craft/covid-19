@@ -120,11 +120,9 @@ export default {
     },
     dead: function(){
       const filteredZenkokuDead = this.Zenkoku.reduce((sum,each)=>sum + each["ndeaths"],0);
-      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("/");
-      if (hiduke[2].length==1){
-        hiduke[2] = "0" + hiduke[2];
-      }
-      const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"月"+hiduke[2]+"日時点";
+      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("年");
+      console.log(hiduke)
+      const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"時点";
       let gata  = this.last.split("-");
       gata = "※"+gata[0]+"年"+gata[1]+"月"+gata[2]+"日時点";
 
