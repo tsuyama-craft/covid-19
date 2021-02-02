@@ -61,11 +61,10 @@ export default {
       return Number(this.kenIryou[this.kenIryou.length-1]["確保数_病床"]) + Number(this.kenIryou[this.kenIryou.length-1]["確保数_宿泊療養施設"])
     },
     update: function() {
-      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("/");
-      if (hiduke[2].length==1){
-        hiduke[2] = "0" + hiduke[2];
-      }
-      const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"月"+hiduke[2]+"日時点";
+      let hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("年");
+      hiduke[0] = hiduke[0].replace('令和','')
+      hiduke[0] = Number(hiduke[0]) + 2018
+      const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"時点";
       return hidukedata
     },
     infected: function() {
@@ -123,7 +122,6 @@ export default {
       let hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("年");
       hiduke[0] = hiduke[0].replace('令和','')
       hiduke[0] = Number(hiduke[0]) + 2018
-      console.log(hiduke)
       const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"時点";
       let gata  = this.last.split("-");
       gata = "※"+gata[0]+"年"+gata[1]+"月"+gata[2]+"日時点";
@@ -139,11 +137,10 @@ export default {
     },
     discharge: function(){
       const filteredZenkokuDis = this.Zenkoku.reduce((sum,each)=>sum + each["nexits"],0);
-      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("/");
-      if (hiduke[2].length==1){
-        hiduke[2] = "0" + hiduke[2];
-      }
-      const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"月"+hiduke[2]+"日時点";
+      let hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("年");
+      hiduke[0] = hiduke[0].replace('令和','')
+      hiduke[0] = Number(hiduke[0]) + 2018
+      const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"時点";
       let gata  = this.last.split("-");
       gata = "※"+gata[0]+"年"+gata[1]+"月"+gata[2]+"日時点";
 
