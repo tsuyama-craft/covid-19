@@ -55,7 +55,7 @@ export default {
       return 'zenkoku'
     },
     use: function() {
-      return Number(this.kenDead[this.kenDead.length-2]["入院中↵(入院予定を含む)"]) + Number(this.kenDead[this.kenDead.length-2]["宿泊療養施設に入所中"])
+      return Number(this.kenDead[this.kenDead.length-2]["入院中"]) + Number(this.kenDead[this.kenDead.length-2]["宿泊療養施設に入所中"])
     },
     all: function() {
       return Number(this.kenIryou[this.kenIryou.length-1]["確保数_病床"]) + Number(this.kenIryou[this.kenIryou.length-1]["確保数_宿泊療養施設"])
