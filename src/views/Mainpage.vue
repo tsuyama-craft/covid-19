@@ -120,7 +120,9 @@ export default {
     },
     dead: function(){
       const filteredZenkokuDead = this.Zenkoku.reduce((sum,each)=>sum + each["ndeaths"],0);
-      const hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("年");
+      let hiduke = this.kenDead[this.kenDead.length-2]["集計時点"].split("年");
+      hiduke[0] = hiduke[0].replace('令和','')
+      hiduke[0] = Number(hiduke[0]) + 2018
       console.log(hiduke)
       const hidukedata = "※"+hiduke[0]+"年"+hiduke[1]+"時点";
       let gata  = this.last.split("-");
