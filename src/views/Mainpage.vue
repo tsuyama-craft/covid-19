@@ -62,8 +62,10 @@ export default {
     },
     update: function() {
       let hiduke = this.kenDead[this.kenDead.length-1]["公表_年月日"].split("/");
-      if (hiduke[2].length==1){
-        hiduke[2] = "0" + hiduke[2];
+      for (let i=1; i<3; i++){
+        if (hiduke[i].length==1){
+          hiduke[i] = "0" + hiduke[i];
+        }
       }
       const hidukedata = "※" + hiduke[0] + "年" + hiduke[1] + "月" + hiduke[2] + "日時点";
       return hidukedata
@@ -75,8 +77,10 @@ export default {
       a = a.replace("月","/");
       a = a.replace("日","/");
       a = a.split("/")
-      if (a[2].length==1){
-        a[2] = "0" + a[2];
+      for (let i=1; i<3; i++){
+        if (a[i].length==1){
+          a[i] = "0" + a[i];
+        }
       }
       const hiduke = "※" + a[0] + "年" + a[1] + "月" + a[2] + "日時点";
       let gata  = this.last.split("-");
@@ -121,8 +125,10 @@ export default {
     dead: function(){
       const filteredZenkokuDead = this.Zenkoku.reduce((sum,each)=>sum + each["ndeaths"],0);
       let hiduke = this.kenDead[this.kenDead.length-1]["公表_年月日"].split("/");
-      if (hiduke[2].length==1){
-        hiduke[2] = "0" + hiduke[2];
+      for (let i=1; i<3; i++){
+        if (hiduke[i].length==1){
+          hiduke[i] = "0" + hiduke[i];
+        }
       }
       const hidukedata = "※" + hiduke[0] + "年" + hiduke[1] + "月" + hiduke[2] + "日時点";
       let gata  = this.last.split("-");
@@ -140,8 +146,10 @@ export default {
     discharge: function(){
       const filteredZenkokuDis = this.Zenkoku.reduce((sum,each)=>sum + each["nexits"],0);
       let hiduke = this.kenDead[this.kenDead.length-1]["公表_年月日"].split("/");
-      if (hiduke[2].length==1){
-        hiduke[2] = "0" + hiduke[2];
+      for (let i=1; i<3; i++){
+        if (hiduke[i].length==1){
+          hiduke[i] = "0" + hiduke[i];
+        }
       }
       const hidukedata = "※" + hiduke[0] + "年" + hiduke[1] + "月" + hiduke[2] + "日時点";
       let gata  = this.last.split("-");
