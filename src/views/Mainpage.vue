@@ -197,7 +197,7 @@ export default {
           registration.unregister();
         }
       })
-      location.reload(true);
+      window.location.reload(true);
     },
       
     lastupdata: function() {
