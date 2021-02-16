@@ -74,6 +74,8 @@ export default {
     infected: function() {
       //const filteredZenkoku = this.ZenkokuDetail.reduce((p,x)=>p+x["PCR 検査陽性者数(単日)"],0)
       const filteredZenkoku = this.Zenkoku.reduce((sum,each)=>sum + each["npatients"],0);
+      console.log('this.kenUtiwake')
+      console.log(this.kenUtiwake)
       let a = this.kenUtiwake[this.kenUtiwake.length-1]["公表年月日"].replace("年","/");
       a = a.replace("月","/");
       a = a.replace("日","/");
@@ -84,7 +86,6 @@ export default {
         }
       }
       const hiduke = "※" + a[0] + "年" + a[1] + "月" + a[2] + "日時点";
-      console.log(hiduke)
       let gata  = this.last.split("-");
       gata = "※"+gata[0]+"年"+gata[1]+"月"+gata[2]+"日時点";
 
@@ -209,6 +210,9 @@ export default {
       .catch(error => console.log(error));
     },
     setKenUchiwake: function(kenUtiwake) {
+      console.log('setkenUtiwake')
+      console.log(kenUtiwake)
+      
       this.kenUtiwake = kenUtiwake
       this.$store.commit('Enter2', this.kenUtiwake)
     },
