@@ -197,6 +197,7 @@ export default {
           registration.unregister();
         }
       })
+      sessionStorage.clear();
       window.location.reload(true);
     },
       
@@ -209,7 +210,6 @@ export default {
     },
     setKenUchiwake: function(kenUtiwake) {
       this.kenUtiwake = kenUtiwake
-      console.log(this.kenUtiwake)
       this.$store.commit('Enter2', this.kenUtiwake)
     },
     setKenPcr: function(kenPcr){
