@@ -24,8 +24,9 @@
             </div>
         </div>
       </div>
-    </div>
+    </div>  
     <div v-else class="loader"></div>
+    <button type="button" v-on:click="cash">更新</button>
   </div>
 </template>
 
@@ -174,14 +175,11 @@ export default {
       kenIryou: [],
       Zenkoku: [],
       last: [],
-      reloadCount: 0,
       //ZenkokuDetail: [],
     }
   },
   mounted: function() {
-    if(this.reloadCount==0) {
-      this.cash();
-    }
+
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshasuu0420.csv",true,'SJIS','UNICODE', this.setKenDetails);
     this.get_csv("https://taurayouhei.github.io/covid-19/data/pcr.csv",true,'SJIS','UNICODE', this.setKenPcr); 
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshashousaijouhou.csv",true,'SJIS','UNICODE',  this.setKenUchiwake);
@@ -194,12 +192,11 @@ export default {
   },
   methods: {
     cash: function(){
-      // window.navigator.serviceWorker.getRegistrations().then(function(registrations){
-      //   for(let registration of registrations){
-      //     registration.unregister();
-      //   }
-      // })
-      this.reloadCount = 1
+      window.navigator.serviceWorker.getRegistrations().then(function(registrations){
+        for(let registration of registrations){
+          registration.unregister();
+        }
+      })
       location.reload(true);
     },
       
