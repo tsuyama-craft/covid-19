@@ -179,7 +179,6 @@ export default {
     }
   },
   mounted: function() {
-    window.navigator.serviceWorker.getRegistration.update();
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshasuu0420.csv",true,'SJIS','UNICODE', this.setKenDetails);
     this.get_csv("https://taurayouhei.github.io/covid-19/data/pcr.csv",true,'SJIS','UNICODE', this.setKenPcr); 
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshashousaijouhou.csv",true,'SJIS','UNICODE',  this.setKenUchiwake);
@@ -197,8 +196,8 @@ export default {
           registration.unregister();
         }
       })
-      sessionStorage.clear();
-      window.location.reload(true);
+      window.navigator.serviceWorker.getRegistration.update();
+      //window.location.reload(true);
     },
       
     lastupdata: function() {
