@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.7d75402a5c43a970059ccc77a002358e.js"
+  "precache-manifest.805277d6f1a6f515fda235908db20fe8.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "CRAFT"});
