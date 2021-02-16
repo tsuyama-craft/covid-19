@@ -194,8 +194,7 @@ export default {
         for(let registration of registrations){
           registration.unregister();
         }
-      }),
-      console.log(this.kenUtiwake)
+      })
     },
       
     lastupdata: function() {
@@ -207,6 +206,7 @@ export default {
     },
     setKenUchiwake: function(kenUtiwake) {
       this.kenUtiwake = kenUtiwake
+      console.log(this.kenUtiwake)
       this.$store.commit('Enter2', this.kenUtiwake)
     },
     setKenPcr: function(kenPcr){
