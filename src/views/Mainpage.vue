@@ -192,11 +192,12 @@ export default {
   },
   methods: {
     cash: function(){
-      window.navigator.serviceWorker.getRegistrations().then(function(registrations){
-        for(let registration of registrations){
-          registration.unregister();
-        }
-      })
+      // window.navigator.serviceWorker.getRegistrations().then(function(registrations){
+      //   for(let registration of registrations){
+      //     registration.unregister();
+      //   }
+      // })
+      location.reload(true);
       return true
     },
       
