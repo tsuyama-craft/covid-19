@@ -209,9 +209,6 @@ export default {
       .catch(error => console.log(error));
     },
     setKenUchiwake: function(kenUtiwake) {
-      console.log('setkenUtiwake')
-      console.log(kenUtiwake)
-      
       this.kenUtiwake = kenUtiwake
       this.$store.commit('Enter2', this.kenUtiwake)
     },
@@ -256,12 +253,6 @@ export default {
               delimiter: ',',
               cast: true
             }, (error, output) => {
-              if(setter.name === 'setKenUchiwake') {
-                console.log('output')
-                console.log(output)
-                console.log('error')
-                console.log(error)
-              }
               setter(Object.freeze(output));
             })
           })
