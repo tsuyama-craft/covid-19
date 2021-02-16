@@ -247,6 +247,7 @@ export default {
               to: to,
               type: 'string'
             })
+            console.log(csv)
             csv = csv.replace(/^\ufeff/,'')
             parse(csv, {
               columns: col,
@@ -256,6 +257,12 @@ export default {
               delimiter: ',',
               cast: true
             }, (error, output) => {
+              if(setter.name === 'setKenUchiwake') {
+                console.log('output')
+                console.log(output)
+                console.log('error')
+                console.log(error)
+              }
               setter(Object.freeze(output));
             })
           })
