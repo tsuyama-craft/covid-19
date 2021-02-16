@@ -35,8 +35,6 @@ import mainmenu from '../components/mainmenu.vue'
 import axios from 'axios'
 import { parse } from 'csv'
 import Encoding from 'encoding-japanese'
-import {API, graphqlOperation} from 'aws-amplify'
-import {listSampleAppsyncTables} from '../graphql/queries'
 
 export default {
   name: 'Mainpage',
@@ -191,22 +189,14 @@ export default {
     this.lastupdata();
   },
   methods: {
-    cash: async function(){
-      let apiResult = await API.graphql(graphqlOperation(listSampleAppsyncTables, { group : "version" }));
-      let item = apiResult.data.listSampleAppsyncTables.items[0];
-      let version = item.path;
-      var versionCookies = Cookies.get('sub.w2or3w.work.version');
-      Cookies.set('sub.w2or3w.work.version', version, { expires: 10 });
-      if(version != versionCookies){
-        window.navigator.serviceWorker.getRegistrations()
-        .then(registrations => {
-          for(let registration of registrations) {
-            registration.unregister();
-          }
-        });
-        window.location.reload(true);
-      }
+    cash: function(){
+      window.navigator.serviceWorker.getRegistrations().then(function(registrations){
+        for(let registration of registrations){
+          registration.unregister();
+        }
+      })
     },
+      
     lastupdata: function() {
       axios.get("https://www.stopcovid19.jp/data/covid19japan.json")
       .then(response =>{
