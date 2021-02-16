@@ -178,11 +178,13 @@ export default {
     }
   },
   mounted: function() {
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    window.navigator.serviceWorker.getRegistrations()
+    .then(function(registrations) {
       for(let registration of registrations) {
         registration.unregister();
       }
     });
+    window.location.reload(true);
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshasuu0420.csv",true,'SJIS','UNICODE', this.setKenDetails);
     this.get_csv("https://taurayouhei.github.io/covid-19/data/pcr.csv",true,'SJIS','UNICODE', this.setKenPcr); 
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshashousaijouhou.csv",true,'SJIS','UNICODE',  this.setKenUchiwake);
