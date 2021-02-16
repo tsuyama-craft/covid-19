@@ -84,6 +84,7 @@ export default {
         }
       }
       const hiduke = "※" + a[0] + "年" + a[1] + "月" + a[2] + "日時点";
+      console.log(hiduke)
       let gata  = this.last.split("-");
       gata = "※"+gata[0]+"年"+gata[1]+"月"+gata[2]+"日時点";
 
