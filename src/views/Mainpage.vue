@@ -174,12 +174,14 @@ export default {
       kenIryou: [],
       Zenkoku: [],
       last: [],
+      reloadCount: 0,
       //ZenkokuDetail: [],
     }
   },
   mounted: function() {
-    // this.cash();
-    // if (this.cash()==true){
+    if(this.reloadCount==0) {
+      this.cash();
+    }
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshasuu0420.csv",true,'SJIS','UNICODE', this.setKenDetails);
     this.get_csv("https://taurayouhei.github.io/covid-19/data/pcr.csv",true,'SJIS','UNICODE', this.setKenPcr); 
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshashousaijouhou.csv",true,'SJIS','UNICODE',  this.setKenUchiwake);
@@ -188,17 +190,18 @@ export default {
     //this.get_csv("http://localhost:8080/content/pcr_positive_daily.csv",true,'UTF8','UNICODE', this.setZenkokuDetail);
     this.get_csv("https://www.stopcovid19.jp/data/covid19japan.csv",true,'UTF8','UNICODE', this.setZenkoku);
     this.lastupdata();
-    // }
+
   },
   methods: {
-    // cash: function(){
-    //   window.navigator.serviceWorker.getRegistrations().then(function(registrations){
-    //     for(let registration of registrations){
-    //       registration.unregister();
-    //     }
-    //   })
-    //   return true
-    // },
+    cash: function(){
+      // window.navigator.serviceWorker.getRegistrations().then(function(registrations){
+      //   for(let registration of registrations){
+      //     registration.unregister();
+      //   }
+      // })
+      this.reloadCount = 1
+      location.reload(true);
+    },
       
     lastupdata: function() {
       axios.get("https://www.stopcovid19.jp/data/covid19japan.json")

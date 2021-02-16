@@ -1,28 +1,8 @@
 <template>
-  <div v-if="serviceworkerUzai == true">
-    <router-view/>
-  </div>
+  <router-view/>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  computed: {
-    serviceworkerUzai: function() {
-      location.reload(true);
-      return true
-    },
-    readyToshowMainPage: function() {
-      return this.kenDetails.length > 0 &&
-      this.kenUtiwake.length > 0 &&
-      this.kenPcr.length > 0 &&
-      this.kenDead.length > 0 &&
-      this.kenIryou.length > 0 &&
-      this.Zenkoku.length > 0 
-    },
-  }
-}
-</script>
+
 
 <style>
 #app {
