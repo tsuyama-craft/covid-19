@@ -35,6 +35,8 @@ import mainmenu from '../components/mainmenu.vue'
 import axios from 'axios'
 import { parse } from 'csv'
 import Encoding from 'encoding-japanese'
+import {API, graphqlOperation} from 'aws-amplify'
+import {listSampleAppsyncTables} from '../graphql/queries'
 
 export default {
   name: 'Mainpage',
@@ -178,13 +180,7 @@ export default {
     }
   },
   mounted: function() {
-    window.navigator.serviceWorker.getRegistrations()
-    .then(function(registrations) {
-      for(let registration of registrations) {
-        registration.unregister();
-      }
-    });
-    window.location.reload(true);
+    this.cash();
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshasuu0420.csv",true,'SJIS','UNICODE', this.setKenDetails);
     this.get_csv("https://taurayouhei.github.io/covid-19/data/pcr.csv",true,'SJIS','UNICODE', this.setKenPcr); 
     this.get_csv("https://taurayouhei.github.io/covid-19/data/kansenshashousaijouhou.csv",true,'SJIS','UNICODE',  this.setKenUchiwake);
@@ -195,6 +191,22 @@ export default {
     this.lastupdata();
   },
   methods: {
+    cash: async function(){
+      let apiResult = await API.graphql(graphqlOperation(listSampleAppsyncTables, { group : "version" }));
+      let item = apiResult.data.listSampleAppsyncTables.items[0];
+      let version = item.path;
+      var versionCookies = Cookies.get('sub.w2or3w.work.version');
+      Cookies.set('sub.w2or3w.work.version', version, { expires: 10 });
+      if(version != versionCookies){
+        window.navigator.serviceWorker.getRegistrations()
+        .then(registrations => {
+          for(let registration of registrations) {
+            registration.unregister();
+          }
+        });
+        window.location.reload(true);
+      }
+    },
     lastupdata: function() {
       axios.get("https://www.stopcovid19.jp/data/covid19japan.json")
       .then(response =>{

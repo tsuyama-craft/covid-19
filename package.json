@@ -13,6 +13,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "aws-amplify": "^3.3.19",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
     "chartjs-plugin-zoom": "^0.7.7",
