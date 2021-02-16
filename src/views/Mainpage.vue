@@ -194,7 +194,8 @@ export default {
         for(let registration of registrations){
           registration.unregister();
         }
-      })
+      }),
+      console.log(this.kenUtiwake)
     },
       
     lastupdata: function() {
