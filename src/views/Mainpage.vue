@@ -26,7 +26,6 @@
       </div>
     </div>  
     <div v-else class="loader"></div>
-    <button type="button" v-on:click="cash">更新</button>
   </div>
 </template>
 
@@ -74,8 +73,6 @@ export default {
     infected: function() {
       //const filteredZenkoku = this.ZenkokuDetail.reduce((p,x)=>p+x["PCR 検査陽性者数(単日)"],0)
       const filteredZenkoku = this.Zenkoku.reduce((sum,each)=>sum + each["npatients"],0);
-      console.log('this.kenUtiwake')
-      console.log(this.kenUtiwake)
       let a = this.kenUtiwake[this.kenUtiwake.length-1]["公表年月日"].replace("年","/");
       a = a.replace("月","/");
       a = a.replace("日","/");
@@ -192,15 +189,6 @@ export default {
 
   },
   methods: {
-    cash: function(){
-      // window.navigator.serviceWorker.getRegistrations().then(function(registrations){
-      //   for(let registration of registrations){
-      //     registration.unregister();
-      //   }
-      // })
-      window.location.reload(true);
-    },
-      
     lastupdata: function() {
       axios.get("https://www.stopcovid19.jp/data/covid19japan.json")
       .then(response =>{
@@ -243,7 +231,6 @@ export default {
               to: to,
               type: 'string'
             })
-            console.log(csv)
             csv = csv.replace(/^\ufeff/,'')
             parse(csv, {
               columns: col,
