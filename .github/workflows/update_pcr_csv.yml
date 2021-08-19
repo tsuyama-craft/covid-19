@@ -27,13 +27,16 @@ jobs:
       - name: Get csv
         run: |
           curl http://www.okayama-opendata.jp/ckan/dataset/e6b3c1d2-2f1f-4735-b36e-e45d36d94761/resource/60ecd874-0f71-4d9f-9a8a-936fad9c99bc/download/pcr.csv > docs/data/pcr.csv
+          curl http://www.okayama-opendata.jp/ckan/dataset/e6b3c1d2-2f1f-4735-b36e-e45d36d94761/resource/60ecd874-0f71-4d9f-9a8a-936fad9c99bc/download/pcr.csv > public/data/pcr.csv
           iconv -f SJIS -t UTF-8 docs/data/pcr.csv -o docs/data/pcr.csv
+          iconv -f SJIS -t UTF-8 public/data/pcr.csv -o public/data/pcr.csv
           
       - name: Commit and Push
         run: |
           git config --local user.email "82013625+tsuyama-craft@users.noreply.github.com"
           git config --local user.name "tsuyama-craft"
           git add docs/data
+          git add public/data
           git commit -m "Update csv"
           git pull origin master
           
