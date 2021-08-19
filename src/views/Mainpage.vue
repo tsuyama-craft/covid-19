@@ -179,10 +179,10 @@ export default {
   },
   mounted: function() {
     this.get_csv("https://tsuyama-craft.github.io/covid-19/data/kansenshasuu0420.csv",true,'SJIS','UNICODE', this.setKenDetails);
-    this.get_csv("https://tsuyama-craft.github.io/covid-19/data/pcr.csv",true,'SJIS','UNICODE', this.setKenPcr); 
+    this.get_csv("https://tsuyama-craft.github.io/covid-19/data/pcr.csv",true,'UTF8','UNICODE', this.setKenPcr); 
     this.get_csv("https://tsuyama-craft.github.io/covid-19/data/kansenshashousaijouhou.csv",true,'SJIS','UNICODE',  this.setKenUchiwake);
-    this.get_csv("https://tsuyama-craft.github.io/covid-19/data/kanjahasseijoukyou.csv",true,'SJIS','UNICODE',  this.setKenDead);
-    this.get_csv("https://tsuyama-craft.github.io/covid-19/data/330001okayamacovid19medicalsystem.csv",true,'SJIS','UNICODE',  this.setKenIryou);
+    this.get_csv("https://tsuyama-craft.github.io/covid-19/data/kanjahasseijoukyou.csv",true,'UTF8','UNICODE',  this.setKenDead);
+    this.get_csv("https://tsuyama-craft.github.io/covid-19/data/330001okayamacovid19medicalsystem.csv",true,'UTF8','UNICODE',  this.setKenIryou);
     //this.get_csv("http://localhost:8080/content/pcr_positive_daily.csv",true,'UTF8','UNICODE', this.setZenkokuDetail);
     this.get_csv("https://www.stopcovid19.jp/data/covid19japan.csv",true,'UTF8','UNICODE', this.setZenkoku);
     this.lastupdata();
