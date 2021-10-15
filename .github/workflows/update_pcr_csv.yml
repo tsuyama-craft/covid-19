@@ -26,8 +26,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Get csv
         run: |
-          curl http://www.okayama-opendata.jp/ckan/dataset/e6b3c1d2-2f1f-4735-b36e-e45d36d94761/resource/60ecd874-0f71-4d9f-9a8a-936fad9c99bc/download/pcr.csv > docs/data/pcr.csv
-          curl http://www.okayama-opendata.jp/ckan/dataset/e6b3c1d2-2f1f-4735-b36e-e45d36d94761/resource/60ecd874-0f71-4d9f-9a8a-936fad9c99bc/download/pcr.csv > public/data/pcr.csv
+          curl https://okayama-pref.dataeye.jp/resource_download/10110 > docs/data/pcr.csv
+          curl https://okayama-pref.dataeye.jp/resource_download/10110 > public/data/pcr.csv
           iconv -f SJIS -t UTF-8 docs/data/pcr.csv -o docs/data/pcr.csv
           iconv -f SJIS -t UTF-8 public/data/pcr.csv -o public/data/pcr.csv
           
