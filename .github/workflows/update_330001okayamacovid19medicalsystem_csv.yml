@@ -26,8 +26,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Get csv
         run: |
-          curl http://www.okayama-opendata.jp/ckan/dataset/e6b3c1d2-2f1f-4735-b36e-e45d36d94761/resource/a42f1454-ef8a-4d01-ac67-f76202fc9822/download/330001okayamacovid19medicalsystem.csv > docs/data/330001okayamacovid19medicalsystem.csv
-          curl http://www.okayama-opendata.jp/ckan/dataset/e6b3c1d2-2f1f-4735-b36e-e45d36d94761/resource/a42f1454-ef8a-4d01-ac67-f76202fc9822/download/330001okayamacovid19medicalsystem.csv > public/data/330001okayamacovid19medicalsystem.csv
+          curl https://okayama-pref.dataeye.jp/resource_download/10114 > docs/data/330001okayamacovid19medicalsystem.csv
+          curl https://okayama-pref.dataeye.jp/resource_download/10114 > public/data/330001okayamacovid19medicalsystem.csv
           iconv -f SHIFT-JIS -t UTF-8 docs/data/330001okayamacovid19medicalsystem.csv -o docs/data/330001okayamacovid19medicalsystem.csv
           iconv -f SHIFT-JIS -t UTF-8 public/data/330001okayamacovid19medicalsystem.csv -o public/data/330001okayamacovid19medicalsystem.csv
       
