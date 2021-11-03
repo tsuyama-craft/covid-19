@@ -36,14 +36,17 @@ import mainmenu from "../components/mainmenu.vue";
 
 function DataSet(data, label, count) {
   const search = [];
+  //公開日が月だけになるように分ける。
   for (let i = 0; i < label.length; i++) {
     search[i] = label[i].slice(0, 7);
   }
 
+  //重複のない配列にする。参考：https://www.suzu6.net/posts/95-js-duplication/
   const searchWord = search.filter(function (x, i, self) {
     return self.indexOf(x) === i;
   });
 
+  //"日別の月だけデータ"と"グラフで表示したい月"を比較して、表示したい月ではない日付と日別データは削除する
   for (let i = 0; i < label.length; i++) {
     if (label[i].slice(0, 7) != searchWord[searchWord.length - 1 - count]) {
       label.splice(i, 1);
@@ -94,7 +97,9 @@ export default {
           this.kenDetails[i]["日別の感染者数"] = 0;
         }
       }
+      
       //グラフを描画するために連想配列を普通の配列に変換
+      //参考までに：https://mseeeen.msen.jp/javascript-map-function/
       const targetList = this.kenDetails
         .map(function (arr) {
           return [arr[target]];
@@ -162,12 +167,16 @@ export default {
             yAxes: [{
                 ticks:{
                     beginAtZero: true,
+                    //Y軸目盛の小数点を消す
+                    //参考：https://hacknote.jp/archives/28022/
                     userCallback: function(label){
                         if(Math.floor(label)===label){
                             return label
                         }
                     },
-                    fontSize: 15
+                    fontSize: 15,
+                    suggestedMax: 50,
+                    stepSize: 10
                 }
             }]
           }
