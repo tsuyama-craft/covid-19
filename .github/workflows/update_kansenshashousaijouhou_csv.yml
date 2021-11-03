@@ -38,6 +38,7 @@ jobs:
           git add docs/data
           git add public/data
           git commit -m "Update csv"
+          git config pull.rebase false
           git pull origin master
           
       - name: Push changes
