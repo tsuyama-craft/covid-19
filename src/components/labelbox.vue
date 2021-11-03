@@ -18,6 +18,7 @@
           {{infected.tsuyama}}<br>
           <p class="ueo">{{infected.data3}}</p>
         </div>
+          <input v-if="msg=='感染者数'" type="button" class="aiu" value="詳細" @click="$router.push('/Detailspage_tsuyama')" />
     </div>
   </form>
 </template>
