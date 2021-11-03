@@ -12,6 +12,11 @@ const routes = [
     component: () => import('../views/Detailspage.vue')
   },
   {
+    path: '/Detailspage_tsuyama',
+    name: 'detailspage_tsuyama',
+    component: () => import('../views/Detailspage_tsuyama.vue')
+  },
+  {
     path: '/shisetupage',
     name: 'shisetupage',
     component: () => import('../views/Shisetupage.vue')
