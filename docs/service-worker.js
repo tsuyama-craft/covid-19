@@ -14,10 +14,27 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.ca6406232b73146bdb8b976e407e6b1e.js"
+  "precache-manifest.3ce52d7b9a6384b4b921f99392b3daaf.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "craft"});
+workbox.core.setCacheNameDetails({ prefix: "craft" });
+
+self.addEventListener('activate', (event) => {
+  var cacheWhitelist = ['v2'];
+
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          // ホワイトリストにないキャッシュ(古いキャッシュ)は削除する
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
