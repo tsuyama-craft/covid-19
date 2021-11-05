@@ -131,35 +131,35 @@ export default {
         this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Okayama_yakkyoku.csv",true,'UTF8','UNICODE',this.setYakkyoku);
         break;
       case '4':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Sports_location.csv",true,'SJIS','UNICODE',this.setSports);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Sports_location.csv",true,'UTF8','UNICODE',this.setSports);
         break;
       case '5':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Nursery_location.csv",true,'SJIS','UNICODE',this.setNursery);
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Kindergarten_location.csv",true,'SJIS','UNICODE',this.setKind);
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/JuniorSchool_location.csv",true,'SJIS','UNICODE',this.setJunior);
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/JuniorHighSchool_location.csv",true,'SJIS','UNICODE',this.setJuniorHigh);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Nursery_location.csv",true,'UTF8','UNICODE',this.setNursery);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Kindergarten_location.csv",true,'UTF8','UNICODE',this.setKind);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/JuniorSchool_location.csv",true,'UTF8','UNICODE',this.setJunior);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/JuniorHighSchool_location.csv",true,'UTF8','UNICODE',this.setJuniorHigh);
         break;
       case '6':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Sightseeing_location.csv",true,'SJIS','UNICODE',this.setSight);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Sightseeing_location.csv",true,'UTF8','UNICODE',this.setSight);
         break;
       case '7':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Welfare_location.csv",true,'SJIS','UNICODE',this.setWelfare);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Welfare_location.csv",true,'UTF8','UNICODE',this.setWelfare);
         break;
       case '8':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Park_location.csv",true,'SJIS','UNICODE',this.setPark);
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Library_location.csv",true,'SJIS','UNICODE',this.setLibrary);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Park_location.csv",true,'UTF8','UNICODE',this.setPark);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Library_location.csv",true,'UTF8','UNICODE',this.setLibrary);
         break;
       case '9':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Government_location.csv",true,'SJIS','UNICODE',this.setGovernment);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Government_location.csv",true,'UTF8','UNICODE',this.setGovernment);
         break;
       case '10':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Rally_location.csv",true,'SJIS','UNICODE',this.setRally);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Rally_location.csv",true,'UTF8','UNICODE',this.setRally);
         break;
       case '11':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Children_location.csv",true,'SJIS','UNICODE',this.setChild);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/Children_location.csv",true,'UTF8','UNICODE',this.setChild);
         break;
       case '12':
-        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/AED_location.csv",true,'SJIS','UNICODE',this.setAED);
+        this.GetCsvFile("https://tsuyama-craft.github.io/covid-19/data/AED_location.csv",true,'UTF8','UNICODE',this.setAED);
         break;
       default:
         break;
