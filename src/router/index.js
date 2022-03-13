@@ -8,13 +8,18 @@ const routes = [
   },
   {
     path: '/Detailspage',
-    name: 'detailspage',
+    name: 'Detailspage',
     component: () => import('../views/Detailspage.vue')
   },
   {
     path: '/Detailspage_tsuyama',
-    name: 'detailspage_tsuyama',
+    name: 'Detailspage_tsuyama',
     component: () => import('../views/Detailspage_tsuyama.vue')
+  },
+  {
+    path: '/Detailspage_munic',
+    name: 'Detailspage_munic',
+    component: () => import('../views/Detailspage_munic.vue')
   },
   {
     path: '/shisetupage',
