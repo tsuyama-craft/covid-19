@@ -3,22 +3,30 @@
     <div class="box27">
       <span class="box-title">{{msg}}</span>
       <input type="radio" :id="zenkokuId" name="TAB" class="tab-switch" checked="checked" /><label :for="zenkokuId" class="tab-label">全国</label>
-        <div class="text">
-          {{ infected.zenkoku }}<br>
-          <p class="ueo" >{{infected.data1}}</p>
-        </div>
+      <div class="text">
+        {{ infected.zenkoku }}<br>
+        <p class="ueo" >{{infected.data1}}</p>
+      </div>
+
       <input type="radio" :id="okayamaId" name="TAB" class="tab-switch" /><label :for="okayamaId" class="tab-label">岡山</label>
-        <div class="text">
-          {{ infected.okayama }}<br>
-          <p class="ueo">{{infected.data2}}</p>
+      <div class="text">
+        {{ infected.okayama }}<br>
+        <p class="ueo">{{infected.data2}}</p>
+        <div style="text-align:left" class="btn">
+          <button v-if="msg=='感染者数'" type="button" class="municipalities" @click="$router.push('/Detailspage_munic')">市町村ごとの感染者数</button>
+          <button v-if="msg=='感染者数'" type="button" class="btn_Detailes" @click="$router.push('/Detailspage')">詳細</button>
         </div>
-          <input v-if="msg=='感染者数'" type="button" class="aiu" value="詳細" @click="$router.push('/Detailspage')" />
+      </div>
+              
       <input type="radio" :id="tsuyamaId" name="TAB" class="tab-switch" /><label :for="tsuyamaId" class="tab-label">津山</label>
-        <div class="text">
-          {{infected.tsuyama}}<br>
-          <p class="ueo">{{infected.data3}}</p>
+      <div class="text">
+        {{infected.tsuyama}}<br>
+        <p class="ueo">{{infected.data3}}</p>
+        <div style="text-align:left" class="btn">
+          <button v-if="msg=='感染者数'" type="button" class="municipalities" @click="$router.push('/Detailspage_munic')">市町村ごとの感染者数</button>
+          <button v-if="msg=='感染者数'" type="button" class="btn_Detailes" @click="$router.push('/Detailspage_tsuyama')">詳細</button>
         </div>
-          <input v-if="msg=='感染者数'" type="button" class="aiu" value="詳細" @click="$router.push('/Detailspage_tsuyama')" />
+      </div>
     </div>
   </form>
 </template>
@@ -119,6 +127,14 @@ export default {
 }
 .ueo{
   font-size: 0.8rem;
+  text-align: center;
+}
+.btn .municipalities{
+  padding: 5px 10px;
+  margin-right: 5%;
+}
+.btn_Detailes{
+  padding: 5px 10px;
 }
 @media screen and (min-width: 480px){
   .text{
@@ -128,23 +144,17 @@ export default {
     font-size: 1rem;
   }
 }
-/* アクティブなタブ */
-.tab-switch:checked+.tab-label {
-    background: DeepSkyBlue;
-}
-.tab-switch:checked+.tab-label+.text {
-     display: block;
-}
-/* ラジオボタン非表示 */
-.tab-switch {
+
+/* タブ、ラジオボタン非表示 */
+input[name="TAB"] {
     display: none;
-}
-.aiu{
-    display: none;
-    margin: 0 0 0 auto;
-}
-.tab-switch:checked+.tab-label+.text+.aiu{
-    display: block;
 }
 
+/* アクティブなタブ */
+input[name="TAB"]:checked + .tab-label {
+    background: DeepSkyBlue;
+}
+.tab-switch:checked + .tab-label + .text {
+    display: block;
+}
 </style>
