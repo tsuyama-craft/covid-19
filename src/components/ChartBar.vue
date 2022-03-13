@@ -1,8 +1,10 @@
 <template>
   <button type="button" v-on:click="Back" :disabled="isTestDisabledBack">前</button>
   <button type="button" v-on:click="Next" :disabled="isTestDisabledNext">次</button>
-  <canvas v-if="isLarge == true" id="chart" height="100" width="300"></canvas>
-  <canvas v-else-if="isLarge == false" id="chart"></canvas>
+   <div class=Chart>
+    <canvas v-if="isLarge == true" id="chart" height="100" width="300"></canvas>
+    <canvas v-else-if="isLarge == false" id="chart"></canvas>
+  </div>
 </template>
 
 
@@ -49,13 +51,6 @@ function DataSet(data, label, count) {
     labelLen: searchWord.length
   };
 }
-
-/*function ChangeLabelsDatasets(chart, label, newdata) {
-  chart.data.labels = label;
-  chart.data.datasets.data = newdata;
-  chart.update();
-}*/
-
 
 export default {
   data: function(){
@@ -109,8 +104,10 @@ export default {
     
     renderChart: function() {
       //グラフを描画するために連想配列を普通の配列に変換
-      const municipalitiesList = this.listCategoryCreat("市区町村名");
-      const dateList = this.listCategoryCreat("集計時点_年月日");
+      let municipalitiesList = this.listCategoryCreat("市区町村名");
+      let dateList = this.listCategoryCreat("集計時点_年月日");
+      //"集計時点_年月日"が格納されていない（CSVファイルに空行のデータがある）場合、その空要素を削除する
+      dateList = dateList.filter(Boolean);
       const filteredDataSet = DataSet(municipalitiesList, dateList, this.count);
 
       this.CountLength = filteredDataSet.LabelLen;
@@ -127,7 +124,9 @@ export default {
           datasets: [{
             label: "新規感染者数",
             data: filteredDataSet.data,
-            backgroundColor: "#00B0F0",
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgb(54, 162, 235)",
+            borderWidth: 1
           }]
         },
         options: {
@@ -193,25 +192,8 @@ export default {
 
 
 <style>
-h1{
-  position: relative;
-  color: #6eb0f9;
-  line-height: 1.4;
-  -webkit-box-reflect: below -10px -webkit-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,0) 10%,rgba(0, 0, 0, 0.6));
-  margin: 30px 0;
-  font-size: 24px;
-}
-.pagelink{
-  text-align: left;
-  margin: 10px 0;
-  font-size: 10px;
-}
-@media screen and (min-width: 480px){
-  h1{
-    font-size: 36px;
-  }
-  .pagelink{
-    font-size: 14px;
-  }
+.Chart{
+  width: 95%;
+  margin: 0 auto;
 }
 </style>
